@@ -6,8 +6,8 @@
 
 	class EL {
 
-		private $username	= "*******"; 
-		private $password	= "*******"; 
+		private $username	= "****"; 
+		private $password	= "****"; 
 		private $cookie 	= "cookie.txt";
 		private $data 		= array();
 
@@ -139,13 +139,14 @@
 		private function printCsv(){
 
 			$fp = fopen('euroleague.csv', 'w');
-
+			//var_dump($this->data);
 			foreach ($this->data as $fields) {
     			fputcsv($fp, $fields);
 			}
 
 			fclose($fp);
 			header('Content-Disposition: attachment; filename="euroleague.csv"');
+			readfile('euroleague.csv');
 
 		}
 
