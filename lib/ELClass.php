@@ -6,10 +6,11 @@
 
 	class EL {
 
-		private $username	= "****"; 
-		private $password	= "****"; 
+		private $username	= "******"; 
+		private $password	= "******"; 
 		private $cookie 	= "cookie.txt";
 		private $data 		= array();
+		private $count 		= 0;
 
 		public function __construct(){
 			$this->login();
@@ -58,7 +59,7 @@
 			$results = $dom->query('.datocontenido');
 
 			$fields = array('Player', 'Team', 'Record', 'Score', 'Price', 'Opponent');
-			$count = 0;
+			$count = $this->count;
 			$res = array();
 
 
@@ -67,17 +68,17 @@
 
 				foreach($result->childNodes as $part){
 					if(trim($part->nodeValue) != ""){
-						$res[$count][$fields[$field]] = $part->nodeValue;
+						$res[$this->count][$fields[$field]] = $part->nodeValue;
 						$field++;
 					}
 				}
 				//$res[$count]['position'] = $position;
 				//
-				$count++;
+				$this->count++;
 
 			}
 
-			unset($res[0]);
+			unset($res[$count]);
 
 			$this->data += $res;
 
